@@ -1,15 +1,22 @@
 const express = require('express');
 
-const app = express() //Calling express as a function sets up server
+const app = express(); //Calling express as a function sets up server
 
+// In Server.js
+app.set('view engine', 'ejs');
 app.get('/',(req, res)=>{
     console.log('Here');
-    res.render('index');
+    res.render('index', {userName:'George'});
 });
-app.get('/potato',(req, res)=>{
-    res.send('<p>Here are your potatoes</p>')
+app.get('/users', (req, res)=>{
+
+res.send('User List');
+
 });
-app.get('/status', (req, res)=>{
-    res.status(500).send('Hi');
+
+app.get('/users/new', (req, res)=>{
+
+res.send('User New Form');
+
 });
 app.listen(3030); //Tell our app to listen for requests
