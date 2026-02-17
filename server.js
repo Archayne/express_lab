@@ -4,6 +4,7 @@ const app = express(); //Calling express as a function sets up server
 
 // In Server.js
 app.set('view engine', 'ejs');
+app.use(express.static("public"));
 app.get('/',(req, res)=>{
     console.log('Here');
     res.render('index', {userName:'George'});
