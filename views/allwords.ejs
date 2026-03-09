@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to George's Dictionary</h1>
+    <p>Here is a list of all the words in George's Dictionary:</p>
+    
+    <% for(let i = 0; i<lines; i++){ %>
+         <p><%= word[i] %> - <%= part[i] %> : <%= definition[i] %></p>
+    <% } %>
+    
+    
+</body>
+</html>

@@ -15,6 +15,37 @@ router.get('/wotd', async (req, res)=>{
 
 module.exports = router;
 
+router.get('/allwords', async(req, res)=>{
+    //homework here
+    let allwordsArray = await getAllWordsFromDictionary();
+    let [word, part, definition] = allwordsArray;
+    res.render('allwords', {word:word, part:part, definition:definition, lines:word.length});
+
+});
+
+let getAllWordsFromDictionary = async ()=>{
+    try{
+        const data = await readFile('resources/allwords.txt', 'utf8');
+        let lines = data.split('\n');
+
+        let word = [];
+        let part = [];
+        let definition = [];
+
+        for(let i = 0; i < lines.length;i++){
+            let columns = lines[i].split('\t');
+
+            word.push(columns[0]);
+            part.push(columns[1]);
+            definition.push(columns[2]);
+        }
+
+        return [word, part, definition];
+    }catch(err){
+        console.log("There was an error reading the file: ", err);
+    }
+}
+
 let getWordFromDictionary = async ()=>{
     try{
         const data = await readFile('resources/allwords.txt', 'utf8');
